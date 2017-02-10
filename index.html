@@ -65,18 +65,21 @@ title: Data Transparency Lab
     </div> -->
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
 
           <div id="globalVisitors"><h4 class="dataTitle">Percentage of all analyzed websites that fingerprint users  <i class="fa fa-info-circle fa-1x" data-toggle="tooltip" data-original-title="We scanned the websites with the most traffic (ranked by Alexa). This doesn't include websites that track users using cookies, only websites that use fingerprinting technology." data-placement="bottom" style="color:#9b9b9b;"></i></h4 class="dataTitle"></div>
           <!-- <img src="http://placehold.it/350x350">  -->
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
 
              <h4 class="dataTitle">Website Categories Ranked by Number of Visits <i class="fa fa-info-circle fa-1x" data-toggle="tooltip" data-original-title="Rank of Website Categories (categories taken from Alexa), by number of monthly fingerprinted visits" data-placement="bottom" style="color:#9b9b9b;"></i></h4 class="dataTitle">
    <!--  <img src="http://placehold.it/350x350"> -->
-       <svg width="600" height="500"></svg>
-    <!-- collapsible -->
+   <div id="categoryBars">
+     
+            <svg width="600" height="450"></svg>
+   </div>
+ 
          <hr>
         </div>
 
@@ -86,13 +89,23 @@ title: Data Transparency Lab
 <div class="section-divider-line"></div>
 <!-- Trends Section -->
     <div id="trends" class="container vizContainer fadeInBlock">
-    <h3> Trends (monthly) </h3>
+    <h3 style="margin-bottom:40px;"> Trends (monthly) </h3>
       <div class="row"> 
-          <div class="col-md-4"> 
-          <h4> Total Sites that Fingerprint (Month-to-month )</h4>
+          <!-- <div class="col-md-4"> 
+          <h4> Total Sites that Fingerprint (Month-to-month)</h4>
           <div id="trend1"> </div>
-          </div>
-          <div class="col-md-4"> </div>
+          </div> -->
+          <h4 class="pull-left">Number of sites that fingerprint displayed by fingerprinting technique</h4>
+          <br>
+          <div class="col-md-12">
+
+          <div id="trendTypes">  <form class="pull-left">
+          Select scope of analysis:
+      <label><input type="radio" name="range" id="range" value="1000" checked> Top 1000 sites</label>
+      
+      <label><input type="radio" name="range" id="range" value="100000"> Top 100,000 sites</label>
+  </form> </div>
+           </div>
 
       </div>  
 
@@ -253,97 +266,8 @@ browser instrumentation.</p>
   <!-- traffic wrapper -->
   </div>
   <script type="text/javascript">
-function drawTrends1(){
-    // set the dimensions and margins of the graph
-  
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-// parse the date / time, d3 built in format
-var parseTime = d3.timeParse("%d-%b-%y");
-
-// set the ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
-
-// define the line
-var valueline = d3.line()
-
-    .x(function(d) { return x(d.date); console.log(d.date); })
-    .y(function(d) { return y(d.traffic); });
-
-// append the svg obgect to the body of the page
-// appends a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
-var svgTrend1 = d3.select("#trend1").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-var trend1data;
-var scope="100000";
-
-
-// Get the data
-d3.csv("data.csv", function(error, data) {
-  if (error) throw error;
-
-console.log(JSON.stringify(data));
-  // format the data
-  data.forEach(function(d) {
-      d.date = parseTime(d.date);
-       d.traffic = +d.traffic;
-      // console.log(d.date);
-  });
-
-  // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { console.log(d.date); return d.date }));
-  y.domain([0, d3.max(data, function(d) { return d.traffic; })]);
-
-  // Add the valueline path.
-  svgTrend1.append("path")
-      .data([data])
-      .attr("class", "line")
-      .attr("d", valueline);
-
-  // Add the X Axis
-  svgTrend1.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-
-  // Add the Y Axis
-  svgTrend1.append("g")
-      .call(d3.axisLeft(y));
-      console.log("done Drawing Line Chart Trends");
-
-});
-}
-drawTrends1();
-
-
-function createLabels(key) {
-  var monthDic = {
-    "01":"Jan", 
-    "02":"Feb", 
-    "03":"Mar",
-    "04":"Apr", 
-    "05":"May", 
-    "06":"Jun",
-    "07":"Jul", 
-    "08":"Aug", 
-    "09":"Sep",
-    "10":"Oct", 
-    "11":"Nov", 
-    "12":"Dec"
-  };
-  year = key.substring(0,4);
-  month = key.substring(4,6);
-  label = monthDic[month] + "'" + year.substring(2,4);
-  return label
-}
+    
   </script>
+  
       <script src="{{ site.baseurl}}/script/privacymeter-map.js"></script>
+      <!-- <script src="{{ site.baseurl}}/script/trendTypes.js"></script> -->
