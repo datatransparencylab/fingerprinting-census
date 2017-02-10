@@ -1355,7 +1355,7 @@ text {
     /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
-.toolTip2 {
+.toolTip {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
     display: none;

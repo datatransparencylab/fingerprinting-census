@@ -424,7 +424,7 @@ function drawGraph(dataset){
       .tickFormat(d3.format(".2s"));
       //.tickFormat(d3.format(",.2r"));
 
-  var divTooltip = d3.select("#trendTypes svg").append("div").attr("class", "toolTip2");
+  var divTooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 
   var svg = d3.select("#trendTypes").append("svg")
