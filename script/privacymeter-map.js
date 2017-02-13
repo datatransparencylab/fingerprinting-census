@@ -203,15 +203,8 @@ function redraw() {
   height = width / 2;
   d3.select("#container2").select('svg').remove();
   setup(width,height);
-  draw(topo);
+  // draw(topo);
 
-  console.log("REDRAW")
-
-  width = c.offsetWidth;
-  height = width / 2;
-  d3.select("#container2").select('svg').remove();
-  setup(width,height);
-  draw(topo);
 }
 
 
