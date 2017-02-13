@@ -36,10 +36,10 @@ function setup(width,height){
 g = svg.append("g");
 
 }
- 
+
 d3.json("data/world-topo.json", function (error, world) {
 
- 
+
   // var countries = world.objects;
   //topojson.feature  returns a features collection
   var countries= topojson.feature(world, world.objects.countries).features;
@@ -48,15 +48,15 @@ d3.json("data/world-topo.json", function (error, world) {
 
   draw(topo);
 
- 
- 
-   
 
-});                
+
+
+
+});
 
 // draw function
 
-function draw(topo){
+/*function draw(topo){
 
 var country= g.selectAll(".country").data(topo);
 
@@ -117,8 +117,8 @@ function throttle(){
     }, 200);
 
     }
-//closemap 
-
+//closemap
+*/
 
 // Visualization 1 -- Global Overview
 //Get website object with a certain url.
@@ -130,15 +130,15 @@ var globalData, total_sites,fingerprint_sites; // a global
 // var maXX= d3.entries(dataT)
 //             .sort(function(a, b) { return d3.descending(a.value, b.value); })
 //             [0];
-//             
+//
 
   console.log("Websites from Spain that fingerprint users" + " "+ globalData.countries.es.websites);
   visualizeDataT();
-  
+
 });
 
 
-function visualizeDataT(){  
+function visualizeDataT(){
 
  total_sites =globalData.websites;
  fingerprint_sites = globalData.websites_tracking;
@@ -156,7 +156,7 @@ console.log("formatted =="+fpPercent);
 
 
 
-// PERCENTAGE OF NEWS SITES DOUGHNUT  
+// PERCENTAGE OF NEWS SITES DOUGHNUT
 // thevariable data is defined as an argument in the callback function of d3 json
 // d3.json("mydata.json", function(data) {
     var data=[fpPercent,noFpPercent];
@@ -185,13 +185,13 @@ var pie= d3.pie()
           .value(function (d){ return d; });
 
 
-// fetch data, then pass it through the Pie Layout "var pie"    
+// fetch data, then pass it through the Pie Layout "var pie"
 var arcs = group.selectAll(".arc")
                 .data(pie(data))
                 .enter()
                   .append("g")
                   .attr("class","arc")
-           
+
            group.append("text")
                 .attr("text-anchor","middle")
                 .attr("class","dataHighlight")
@@ -212,8 +212,8 @@ var arcs = group.selectAll(".arc")
             //     .attr("fill", "white")
             //     .text(function(d) { return d.data + " %"  ;});
 
- 
-   
+
+
 
 
 }
@@ -228,9 +228,9 @@ function drawBargraph() {
         margin = {top: 20, right: 50, bottom: 30, left: 100},
         width = +svgCat.attr("width") - margin.left - margin.right,
         height = +svgCat.attr("height") - margin.top - margin.bottom;
-      
+
     var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-      
+
     var x = d3.scaleLinear()
               .range([0, width]);
     var y = d3.scaleBand()
@@ -239,12 +239,12 @@ function drawBargraph() {
     var gr = svgCat.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-      
+
     d3.json("horizontalData.json", function(error, data) {
         if (error) throw error;
-      
+
         data.sort(function(a, b) { return a.value - b.value; });
-      
+
         x.domain([0, d3.max(data, function(d) { return d.value; })]);
         y.domain(data.map(function(d) { return d.category; }))
           .padding(0.1);
@@ -278,15 +278,15 @@ function drawBargraph() {
 
             // gr.append("text")
             //   .text("TEXTTT");
-    });                      
+    });
 }
 
 //Fingerprinted Traffic by Website Category
 drawBargraph();
 
-// PERCENTAGE OF NEWS SITES DOUGHNUT  
+// PERCENTAGE OF NEWS SITES DOUGHNUT
 function drawDoughnut(){
-// PERCENTAGE OF NEWS SITES DOUGHNUT  
+// PERCENTAGE OF NEWS SITES DOUGHNUT
 // thevariable data is defined as an argument in the callback function of d3 json
 // d3.json("mydata.json", function(data) {
     var data=[4,96];
@@ -314,13 +314,13 @@ var pie= d3.pie()
           .value(function (d){ return d; });
 
 
-// fetch data, then pass it through the Pie Layout "var pie"    
+// fetch data, then pass it through the Pie Layout "var pie"
 var arcs = group.selectAll(".arc")
                 .data(pie(data))
                 .enter()
                   .append("g")
                   .attr("class","arc")
-           
+
            group.append("text")
                 .attr("text-anchor","middle")
                 .attr("class","dataHighlight")
@@ -340,9 +340,6 @@ var arcs = group.selectAll(".arc")
             //     .attr("font-size","24px")
             //     .attr("fill", "white")
             //     .text(function(d) { return d.data + " %"  ;});
-   
+
  }
  drawDoughnut();
-
-
- 

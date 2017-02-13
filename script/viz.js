@@ -20,28 +20,29 @@ var totalFingerprinted= globalData.fingerprint_traffic;
      totalFingerprinted = d3.format(",")(totalFingerprinted);
 
      var lastUpdated= globalData.last_update;
-$('#introNumber').append( "We have audited over " + "<span>" + totalAnalyzed + "</span>"+ " of the most visited websites to shine a light on the practice of fingerprinting. Here are our some of our results. "  );
+//$('#introNumber').append( "We have audited over " + "<span>" + totalAnalyzed + "</span>"+ " of the most visited websites to shine a light on the practice of fingerprinting. Here are our some of our results. "  );
+$('#introNumber').append( "We have audited over " + "<span>400,000</span>"+ " of the most visited websites to shine a light on the practice of fingerprinting. Here are our some of our results. "  );
 $('#updated').append( "Last updated: " + lastUpdated);
 
 
 $('#totalFingerprinted').append( "<strong>" + totalFingerprinted + " "+ "</strong>" + "<p>visits have been fingerprinted in the last month.</p>"  );
 
 
-  // draw global data doughnut viz
-  visualizeDataT();
-  drawDoughnuts("categories","business","#category1");
-  drawDoughnuts("categories","news","#category2");
-    drawDoughnuts("categories","health","#category3");
-     drawDoughnuts("categories","kids_and_teens","#category4");
-     drawDoughnuts("categories","computers","#category5");
-     drawDoughnuts("categories","shopping","#category6");
-     drawDoughnuts("categories","arts","#category7");
-     drawDoughnuts("categories","home","#category8");
+// draw global data doughnut viz
+visualizeDataT();
+drawDoughnuts("categories","business","#category1");
+drawDoughnuts("categories","news","#category2");
+drawDoughnuts("categories","health","#category3");
+drawDoughnuts("categories","kids_and_teens","#category4");
+drawDoughnuts("categories","computers","#category5");
+drawDoughnuts("categories","shopping","#category6");
+drawDoughnuts("categories","arts","#category7");
+drawDoughnuts("categories","home","#category8");
 
 
 });
 
- function loadTable(){
+function loadTable(){
 // Load Table data
 $.getJSON("https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json", function(data){
            $("#container").html="";
@@ -613,10 +614,3 @@ $.getJSON('https://privacymeter-dtl.firebaseio.com/trends.json', function(dataFB
 
   update(dataset, periods, $('input[name=range]:checked').val())
 });
-
-
-
-
-
-
-  
