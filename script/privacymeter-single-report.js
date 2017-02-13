@@ -57,7 +57,7 @@ d3.json("data/world-topo-min.json", function(error, world) {
   var countries = topojson.feature(world, world.objects.countries).features;
 
   topo = countries;
-  //draw(topo);
+  // draw(topo);
 
 });
 
@@ -76,15 +76,6 @@ function handleMouseOut(){
 }
 
 function draw(topo) {
-
- //map legend creation
- // d3.select(window).on("resize", throttle);
-
- //set the sclae of colours in two different ways
- // var cs = chroma.scale('OrRd').colors(6); //OrRd scale designed colours to fit well
-
-
-
 
  var c = document.getElementById('trafficMap');
  var width = c.offsetWidth;
@@ -183,46 +174,46 @@ function draw(topo) {
 
  }
 
- var throttleTimer;
- function throttle() {
-   window.clearTimeout(throttleTimer);
-     throttleTimer = window.setTimeout(function() {
-       redraw();
-     }, 200);
- }
+ // var throttleTimer;
+ // function throttle() {
+ //   window.clearTimeout(throttleTimer);
+ //     throttleTimer = window.setTimeout(function() {
+ //       redraw();
+ //     }, 200);
+ // }
 
 
  //geo translation on mouse click in map
- function click() {
-   var latlon = projection.invert(d3.mouse(this));
-   console.log(latlon);
- }
+ // function click() {
+ //   var latlon = projection.invert(d3.mouse(this));
+ //   console.log(latlon);
+ // }
 
 
  //function to add points and text to the map (used in plotting capitals)
- function addpoint(lon,lat,text) {
+ // function addpoint(lon,lat,text) {
 
-   var gpoint = g.append("g").attr("class", "gpoint");
-   var x = projection([lon,lat])[0];
-   var y = projection([lon,lat])[1];
+ //   var gpoint = g.append("g").attr("class", "gpoint");
+ //   var x = projection([lon,lat])[0];
+ //   var y = projection([lon,lat])[1];
 
-   gpoint.append("svg:circle")
-         .attr("cx", x)
-         .attr("cy", y)
-         .attr("class","point")
-         .attr("r", 1.5);
+ //   gpoint.append("svg:circle")
+ //         .attr("cx", x)
+ //         .attr("cy", y)
+ //         .attr("class","point")
+ //         .attr("r", 1.5);
 
-   //conditional in case a point has no associated text
-   if(text.length>0){
+  
+ //   if(text.length>0){
 
-     gpoint.append("text")
-           .attr("x", x+2)
-           .attr("y", y+2)
-           .attr("class","text")
-           .text(text);
-   }
+ //     gpoint.append("text")
+ //           .attr("x", x+2)
+ //           .attr("y", y+2)
+ //           .attr("class","text")
+ //           .text(text);
+ //   }
 
- }
+ // }
 
  var ratio_dict = {}
 
@@ -319,39 +310,39 @@ function draw(topo) {
 }
   //.style("fill", function(d, i) { return d.properties.color; })
 
-function redraw() {
-  width = c.offsetWidth;
-  height = width / 2;
-  d3.select('svg').remove();
-  setup(width,height);
-  draw(topo);
-}
+// function redraw() {
+//   width = c.offsetWidth;
+//   height = width / 2;
+//   d3.select('svg').remove();
+//   setup(width,height);
+//   draw(topo);
+// }
 
 
-function move() {
+// function move() {
 
-  var t = [d3.event.transform.x,d3.event.transform.y];
-  var s = d3.event.transform.k;
-  zscale = s;
-  var h = height/4;
+//   var t = [d3.event.transform.x,d3.event.transform.y];
+//   var s = d3.event.transform.k;
+//   zscale = s;
+//   var h = height/4;
 
-  t[0] = Math.min(
-    (width/height)  * (s - 1),
-    Math.max( width * (1 - s), t[0] )
-  );
+//   t[0] = Math.min(
+//     (width/height)  * (s - 1),
+//     Math.max( width * (1 - s), t[0] )
+//   );
 
-  t[1] = Math.min(
-    h * (s - 1) + h * s,
-    Math.max(height  * (1 - s) - h * s, t[1])
-  );
+//   t[1] = Math.min(
+//     h * (s - 1) + h * s,
+//     Math.max(height  * (1 - s) - h * s, t[1])
+//   );
 
-  //zoom.translateBy(t);
-  g.attr("transform", "translate(" + t + ")scale(" + s + ")");
+//   //zoom.translateBy(t);
+//   g.attr("transform", "translate(" + t + ")scale(" + s + ")");
 
-  //adjust the country hover stroke width based on zoom level
-  d3.selectAll(".country").style("stroke-width", 0.5 / s);
+//   //adjust the country hover stroke width based on zoom level
+//   d3.selectAll(".country").style("stroke-width", 0.5 / s);
 
-}
+// }
 
 var throttleTimer;
 function throttle() {
@@ -394,5 +385,5 @@ function addpoint(lon,lat,text) {
 
 }
 
-var ratio_dict = {}
+// var ratio_dict = {}
 

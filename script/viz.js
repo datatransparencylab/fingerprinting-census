@@ -1,12 +1,5 @@
 // Visualization 1 -- Global Overview
-//Get website object with a certain url.
-// ALL DATA URL: https://privacymeter-eddbf.firebaseio.com/.json
-
-//end trendTypes
-
 var globalData, total_sites,fingerprint_sites, categoryTraffic; // a global
-
-
 
 
   d3.json("https://privacymeter-eddbf.firebaseio.com/data/global.json", function(json) {
@@ -20,6 +13,8 @@ var totalFingerprinted= globalData.fingerprint_traffic;
      totalFingerprinted = d3.format(",")(totalFingerprinted);
 
      var lastUpdated= globalData.last_update;
+
+     // Introduction div data
 //$('#introNumber').append( "We have audited over " + "<span>" + totalAnalyzed + "</span>"+ " of the most visited websites to shine a light on the practice of fingerprinting. Here are our some of our results. "  );
 $('#introNumber').append( "We have audited over " + "<span>400,000</span>"+ " of the most visited websites to shine a light on the practice of fingerprinting. Here are our some of our results. "  );
 $('#updated').append( "Last updated: " + lastUpdated);
@@ -30,6 +25,7 @@ $('#totalFingerprinted').append( "<strong>" + totalFingerprinted + " "+ "</stron
 
 // draw global data doughnut viz
 visualizeDataT();
+
 drawDoughnuts("categories","business","#category1");
 drawDoughnuts("categories","news","#category2");
 drawDoughnuts("categories","health","#category3");
@@ -41,6 +37,8 @@ drawDoughnuts("categories","home","#category8");
 
 
 });
+
+loadTable();
 
 function loadTable(){
 // Load Table data
@@ -62,7 +60,8 @@ $.getJSON("https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_c
 
 
 }
-loadTable();
+
+
 
 function visualizeDataT(){
 
@@ -131,17 +130,10 @@ var arcs = group.selectAll(".arc")
             .attr("d", arc)
             .attr("fill", function(d) { return color(d.data);})
 
-
-
-
-
-
-
-
 }
 
 
-    //Fingerprinted Traffic by Website Category
+//Fingerprinted Traffic by Website Category
 function drawBargraph() {
 
 
