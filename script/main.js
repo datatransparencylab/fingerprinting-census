@@ -39,17 +39,17 @@ $( document ).ready(function() {
 });
 // angular tutorial
 
-(function() {
+// (function() {
 
-var app= angular.module('fingerprinting',['ngRoute'] );
+// var app= angular.module('fingerprinting',['ngRoute'] );
 
-app.controller('FPController', function(){
+// app.controller('FPController', function(){
 
 	 
 
-	});
+// 	});
 
-})();
+// })();
 
 
 
