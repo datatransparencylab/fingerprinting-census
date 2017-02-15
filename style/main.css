@@ -1263,6 +1263,7 @@ text {
 .legend {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 60%;
+ /*   padding-left: 100px;*/
 }
 rect {
     stroke-width: 2;
@@ -1326,4 +1327,18 @@ width: 960px;
 	font-size: 2em;
 
 
+}
+
+
+#trendTypes{
+width: 960px;
+height: 500px;
+}
+#trendTraffic{
+width: 960px;
+height: 500px;
+}
+#trendTotal{
+width: 960px;
+height: 500px;
 }

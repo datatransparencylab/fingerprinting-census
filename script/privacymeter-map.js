@@ -18,7 +18,7 @@ var cs = [
 //var cs = chroma.scale(palette).colors(7); //initial to final value
 // var cs = chroma.scale(['white', 'Red']).colors(6);
 
-var top_trackers = (function () {
+/*var top_trackers = (function () {
     var json = null;
     $.ajax({
         'async': false,
@@ -31,7 +31,7 @@ var top_trackers = (function () {
         }
     });
     return json;
-})();
+})();*/
 
 
 
@@ -156,6 +156,35 @@ function draw(topo) {
 
   var country = g.selectAll(".country").data(topo);
 
+
+
+
+test()
+
+function test(){
+    $.ajax({
+        //'async': false,
+        'global': false,
+        'url': "https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json",
+        'dataType': "json",
+        'success': function (data) {
+	    top_trackers = data;
+            country.enter().insert("path")
+	      .attr("class", "country")
+	      .attr("d", path)
+	      .attr("id", function(d,i) { return d.id; })
+	      .attr("title", function(d,i) { return d.properties.name; })
+	      //.style("fill", function(d, i) { return d.properties.color; })
+	      .style("fill", function(d, i) { return countryFill(d.properties.name); })
+	      .style("stroke", "#000")
+	      .style("stroke-width", "0.4px")
+	      .on("mouseover", handleMouseOver)
+              .on("mouseout", handleMouseOut);
+        }
+    });
+};
+
+/*
   country.enter().insert("path")
       .attr("class", "country")
       .attr("d", path)
@@ -167,7 +196,7 @@ function draw(topo) {
       .style("stroke-width", "0.4px")
        .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut);
-
+*/
 
   //tooltips capitals
   /*
