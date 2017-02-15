@@ -387,10 +387,10 @@ $('input[name=range]:radio').change(function () {
 });
 
 
-function drawGraph(dataset){
-  var margin = {top: (parseInt(d3.select("#trendTypes").style('width'), 10)/10), right: (parseInt(d3.select("#trendTypes").style('width'), 10)/20), bottom: (parseInt(d3.select("#trendTypes").style('width'), 10)/5), left: (parseInt(d3.select("#trendTypes").style('width'), 10)/20)},
-      width = parseInt(d3.select("#trendTypes").style('width'), 10) - margin.left - margin.right,
-      height = parseInt(d3.select("#trendTypes").style('height'), 10) - margin.top - margin.bottom;
+function drawTrendsGraph(dataset, divId){
+  var margin = {top: (parseInt(d3.select(divId).style('width'), 10)/10), right: (parseInt(d3.select(divId).style('width'), 10)/20), bottom: (parseInt(d3.select(divId).style('width'), 10)/5), left: (parseInt(d3.select(divId).style('width'), 10)/20)},
+      width = parseInt(d3.select(divId).style('width'), 10) - margin.left - margin.right,
+      height = parseInt(d3.select(divId).style('height'), 10) - margin.top - margin.bottom;
 
   var x0 = d3.scaleBand()
       .range([0, width])
@@ -419,8 +419,8 @@ function drawGraph(dataset){
 
   var divTooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-
-  var svg = d3.select("#trendTypes").append("svg")
+  console.log(divId)
+  var svg = d3.select(divId).append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -490,8 +490,17 @@ function drawGraph(dataset){
     l = elements.length
     l = l-1
     elementData = elements[l].__data__
-    divTooltip.html((d.label)+"<br>"+elementData.name+"<br>"+elementData.value + " sites");
-      });
+
+    switch(elementData.name) {
+    case "Traffic":
+        divTooltip.html((d.label)+"<br>"+elementData.name+"<br>"+elementData.value + " visits");
+        break;
+    case "Fingerprints":
+        divTooltip.html((d.label)+"<br>"+elementData.value + "<br>" + elementData.name);
+        break;
+    default:
+        divTooltip.html((d.label)+"<br>"+elementData.name+"<br>"+elementData.value + " sites");
+    }});
   bar
       .on("mouseout", function(d){
     divTooltip.style("display", "none");
@@ -506,13 +515,14 @@ function drawGraph(dataset){
 
   legend.append("rect")
       .attr("x", width - 18)
+      .attr("y", -30)
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", color);
 
   legend.append("text")
       .attr("x", width - 24)
-      .attr("y", 9)
+      .attr("y", -22)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d; });
@@ -563,8 +573,7 @@ function fpTotalJSON(data, period, top) {
 
 function update(dataset, periods, range) {
     // console.log("ENTRA")
-    var svg = d3.select("#trendTypes svg");
-    svg.remove();
+
     /*dataset = [
         {label:"Dec'16", "Canvas":22},
         {label:"Jan'17", "Canvas":25},
@@ -585,11 +594,38 @@ function update(dataset, periods, range) {
         {label:"Jan'30", "Canvas":18},
         {label:"Feb'30", "Canvas":25}
     ]*/
+
+
+    divId = "#trendTraffic"
+
+    var svg = d3.select(divId + " svg");
+    svg.remove();
+
+    datasetArray = [];
+    for (i = 0; i < periods.length; ++i) {
+      datasetArray.push(fpTrafficJSON(dataset, periods[i], range))
+    }
+    drawTrendsGraph(datasetArray, divId);
+    divId = "#trendTotal"
+    var svg = d3.select(divId + " svg");
+    svg.remove();
+
+    datasetArray = [];
+    for (i = 0; i < periods.length; ++i) {
+      datasetArray.push(fpTotalJSON(dataset, periods[i], range))
+    }
+    drawTrendsGraph(datasetArray, divId, svg);
+
+    divId = "#trendTypes"
+    var svg = d3.select(divId + " svg");
+    svg.remove();
+
     datasetArray = [];
     for (i = 0; i < periods.length; ++i) {
       datasetArray.push(fpTypesJSON(dataset, periods[i], range))
     }
-    drawGraph(datasetArray);
+    drawTrendsGraph(datasetArray, divId);
+
 }
 
 var dataset;
