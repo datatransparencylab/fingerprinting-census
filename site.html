@@ -82,7 +82,7 @@ title: Data Transparency Lab
 
         function querydb(a) {
             //console.log("Valid url: " + a);
-            return $.getJSON('https://privacymeter-dtl.firebaseio.com/data/sites/' + a + '.json', function(data) {
+            return $.getJSON('https://privacymeter-dtl.firebaseio.com/sites/' + a + '.json', function(data) {
 
               updateContent(data);
 
