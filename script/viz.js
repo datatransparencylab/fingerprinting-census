@@ -419,7 +419,7 @@ function drawTrendsGraph(dataset, divId){
 
   var divTooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-  console.log(divId)
+  //console.log(divId)
   var svg = d3.select(divId).append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
