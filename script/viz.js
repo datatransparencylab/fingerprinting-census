@@ -121,7 +121,7 @@ var arcs = group.selectAll(".arc")
            group.append("text")
                 .attr("text-anchor","middle")
                 .attr("class","dataHighlight")
-                .attr("transform", arc.centroid(minD))
+                //.attr("transform", arc.centroid(parseFloat(minD)))
                 .text(function(d) { return d3.min(data)+"%";});
 // necesitaras enter() method para texto dinamico viniendo de db
           // append paths
