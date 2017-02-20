@@ -1333,12 +1333,15 @@ width: 960px;
 #trendTypes{
 width: 960px;
 height: 500px;
+margin: 0 auto;
 }
 #trendTraffic{
 width: 960px;
 height: 500px;
+margin: 0 auto;
 }
 #trendTotal{
 width: 960px;
 height: 500px;
+margin: 0 auto;
 }
