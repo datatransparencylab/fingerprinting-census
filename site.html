@@ -83,13 +83,12 @@ title: Data Transparency Lab
         function querydb(a) {
             //console.log("Valid url: " + a);
             return $.getJSON('https://privacymeter-dtl.firebaseio.com/sites/' + a + '.json', function(data) {
-
               updateContent(data);
-
-              top_trackers = data.information.traffic_top;
-
-              draw(topo);//updateContent(data);
-                //console.log("query sent");
+              if (data != null && data.hasOwnProperty("fingerprint")) {
+                top_trackers = data.information.traffic_top;
+                draw(topo);//updateContent(data);
+              }
+              //console.log("query sent");
             });
         }
 
