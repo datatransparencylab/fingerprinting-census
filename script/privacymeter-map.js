@@ -274,7 +274,7 @@ function throttle() {
 //geo translation on mouse click in map
 function click() {
   var latlon = projection.invert(d3.mouse(this));
-  console.log(latlon);
+  //console.log(latlon);
 }
 
 
