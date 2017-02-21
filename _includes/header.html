@@ -44,30 +44,26 @@
 <script>
 
     $('#input_button').click(function() {
-        //querydb();
+        //querydb()
         setQuery();
     });
 
     $('#input_box').on('keypress', function(e) {
         if (e.which === 13) {
             e.preventDefault();
-            //querydb();
+            //querydb();            
             setQuery();
         }
     });
 
 
-    function setQuery() {
-
+    function setQuery() { 
            var url = $('#input_box').val();
-
             console.log($('#input_box').val())
             console.log("setQuery: " + url);
 
             if (validURL(url)) {
-
               window.location.href = "site?" + formatUrl(url);
-
             } else {
                 console.log("invalid url");
             }
