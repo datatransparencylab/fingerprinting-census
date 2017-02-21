@@ -121,6 +121,10 @@ title: Data Transparency Lab
             if (siteData == null) {
                 $("#report-site-not-found").html(url)
                 $("#notFound").show();
+                var newQueryRef = new Firebase('https://privacymeter-dtl.firebaseio.com/queries');
+                    newQueryRef.push({
+                        "url": url
+                    });
                 //console.log("NOT IN OUR DB!");
             } else {
                 $("#report-site").html("Report for " + siteData.url)
