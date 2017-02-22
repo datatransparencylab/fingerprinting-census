@@ -1,11 +1,9 @@
 // Visualization 1 -- Global Overview
 var insightData, total_sites, fingerprint_sites, categoryTraffic; // a global
 
-
 //d3.json("https://privacymeter-eddbf.firebaseio.com/data/global.json", function(json) {
 d3.json("https://privacymeter-dtl.firebaseio.com/insights.json", function (json) {
     insightData = json;
-
 
     var totalFingerprintedTraffic = insightData.fingerprint_traffic;
     var totalFingerprinted = insightData.tracking_sites;
@@ -23,7 +21,6 @@ d3.json("https://privacymeter-dtl.firebaseio.com/insights.json", function (json)
 
     $('#totalFingerprintedTraffic').append("<strong>" + totalFingerprintedTraffic + " " + "</strong>" + "<p>visits have been fingerprinted in the last month.</p>");
 
-
     // draw global data doughnut viz
     visualizeDataT();
     
@@ -35,7 +32,6 @@ d3.json("https://privacymeter-dtl.firebaseio.com/insights.json", function (json)
         drawDoughnuts("categories", "Shopping", "#category6");
         drawDoughnuts("categories", "Arts and Entertainment", "#category7");
         drawDoughnuts("categories", "Home and Garden", "#category8");
-    
 
 });
 
@@ -61,8 +57,6 @@ function loadTable() {
 
 
 }
-
-
 
 function visualizeDataT() {
 
