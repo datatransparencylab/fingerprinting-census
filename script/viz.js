@@ -38,7 +38,7 @@ d3.json("https://privacymeter-dtl.firebaseio.com/insights.json", function (json)
 loadTable();
 
 function loadTable() {
-    // Load Table data
+    // Load Table data 
     //$.getJSON("https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json", function (data) {
     $.getJSON("https://privacymeter-dtl.firebaseio.com/insights/top_ranks/top_countries_fingerprint.json", function (data) {    
         $("#container").html = "";
