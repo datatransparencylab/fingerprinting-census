@@ -39,17 +39,20 @@ loadTable();
 
 function loadTable() {
     // Load Table data
-    $.getJSON("https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json", function (data) {
+    //$.getJSON("https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json", function (data) {
+    $.getJSON("https://privacymeter-dtl.firebaseio.com/insights/top_ranks/top_countries_fingerprint.json", function (data) {    
         $("#container").html = "";
         $("#container").append("<tr><th>Country</th><th>Ratio</th></tr>");
         if (data != null && $.isArray(data)) {
             data.sort(function (a, b) {
                 return (b.track_ratio - a.track_ratio);
             });
-            var top = data.slice(0, 10);
+            delete data["Unknown"];
+            var top = data.slice(0, 11);
             $.each(top, function (index, value) {
-
-                $("#container").append("<tr><td>" + value.country + "</td><td class='second-colum'>" + value.track_ratio + "</td></tr>");
+                if(value.country != "Unknown"){
+                    $("#container").append("<tr><td>" + value.country + "</td><td class='second-colum'>" + value.track_ratio + "</td></tr>");
+                }
             });
         }
     });

@@ -108,7 +108,7 @@ function draw(topo) {
 
   var color_domain = [50, 150, 350, 750, 1500]
   var ext_color_domain = [0, 50, 150, 350, 750, 1500]
-  var legend_labels = ["< 2%", "+2%", "+4%", "+6%", "+8%", "> 10"]
+  var legend_labels = ["< 1%", "+1%", "+2%", "+3%", "+4%", "> 5"]
 
   var color = d3.scaleThreshold()
   .domain(color_domain)
@@ -165,7 +165,8 @@ function test(){
     $.ajax({
         //'async': false,
         'global': false,
-        'url': "https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json",
+        //'url': "https://privacymeter-eddbf.firebaseio.com/data/global/top_ranks/top_countries_fingerprint.json",
+        'url': "https://privacymeter-dtl.firebaseio.com/insights/top_ranks/top_countries_fingerprint.json",
         'dataType': "json",
         'success': function (data) {
 	    top_trackers = data;
@@ -300,44 +301,39 @@ function addpoint(lon,lat,text) {
           .attr("class","text")
           .text(text);
   }
-
 }
 
 var ratio_dict = {}
 
 function countryFill(countryName){
 
-
   for (var i = 0; i < top_trackers.length; i++){
 
     var ratio_trackers = parseFloat(top_trackers[i].track_ratio).toFixed(2)
 
-
     ratio_dict[top_trackers[i].country] = ratio_trackers + "%";
-
-
 
     if (top_trackers[i].country == countryName){
 
          if (ratio_trackers == 0){
         return cs[0];
 
-          } else if (ratio_trackers < 2){
+          } else if (ratio_trackers < 1){
         return cs[1];
 
-          } else if (ratio_trackers < 4){
+          } else if (ratio_trackers < 2){
         return cs[2];
 
-          } else if (ratio_trackers < 6){
+          } else if (ratio_trackers < 3){
         return cs[3];
 
-          } else if (ratio_trackers < 8){
+          } else if (ratio_trackers < 4){
         return cs[4];
 
-          } else if (ratio_trackers < 10){
+          } else if (ratio_trackers < 5){
         return cs[5];
 
-          } else if (ratio_trackers >= 10){
+          } else if (ratio_trackers >= 5){
         return cs[6];
           }
     }
