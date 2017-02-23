@@ -147,7 +147,9 @@ function drawBargraph() {
             top: 20,
             right: 50,
             bottom: 30,
+
             left: 170
+
         },
         width = +svgCat.attr("width") - margin.left - margin.right,
         height = +svgCat.attr("height") - margin.top - margin.bottom;
