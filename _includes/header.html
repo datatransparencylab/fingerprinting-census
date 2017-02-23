@@ -1,8 +1,7 @@
 <nav id="navbar-default" class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse"
-              data-target="#myNavbar">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -17,23 +16,23 @@
     </div>
     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
       <form id="searchBar" class="navbar-form navbar-left">
-           <input type="text" class="search-query empty search_input pull-left" id="input_box" placeholder="&#xF002; Search websites">
-         <button type="submit" class="btn btn-default search_button" id="input_button">Search</button>
-     </form>
+        <input type="text" class="search-query empty search_input pull-left" id="input_box" placeholder="&#xF002; Search websites">
+        <button type="button" class="btn btn-default search_button" id="input_button">Search</button>
+      </form>
       <ul class="nav navbar-nav">
         <li class="{% if page.isIndex %}active{% endif %}">
-        <a href="{% if page.isIndex%}#{% else %}{{ site.baseurl}}/index.html#{% endif %}">Home</a>
-      </li>
+          <a href="{% if page.isIndex%}#{% else %}{{ site.baseurl}}/index.html#{% endif %}">Home</a>
+        </li>
 
         <li>
-        <a href="{{ site.baseurl}}/index.html#about">About</a>
-      </li>
-<li>
-              <a href="{{ site.baseurl}}/downloads.html">Downloads</a>
-            </li>
+          <a href="{{ site.baseurl}}/index.html#about">About</a>
+        </li>
         <li>
-              <a href="http://www.datatransparencylab.org">datatransparencylab.org</a>
-            </li>
+          <a href="{{ site.baseurl}}/downloads.html">Downloads</a>
+        </li>
+        <li>
+          <a href="http://www.datatransparencylab.org">datatransparencylab.org</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -42,56 +41,50 @@
 <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
 <script>
+  $('#input_button').click(function () {
+    //querydb()
+    setQuery();
+  });
 
-    $('#input_button').click(function() {
-        //querydb();
-        setQuery();
-    });
-
-    $('#input_box').on('keypress', function(e) {
-        if (e.which === 13) {
-            e.preventDefault();
-            //querydb();
-            setQuery();
-        }
-    });
-
-
-    function setQuery() {
-
-           var url = $('#input_box').val();
-
-
-            console.log("setQuery: " + url);
-
-            if (validURL(url)) {
-
-              window.location.href = "site?" + formatUrl(url);
-
-            } else {
-                console.log("invalid url");
-            }
-        }
-
-
-    function validURL(str) {
-        var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-        var pattern = new RegExp(expression);
-        if (!pattern.test(str)) {
-            alert("Please enter a valid URL.");
-            return false;
-        } else {
-            return true;
-        }
+  $('#input_box').on('keypress', function (e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      //querydb();            
+      setQuery();
     }
+  });
 
-function formatUrl(url){
-  if(url.indexOf("://") == -1){
-    url = "http://" + url;
+
+  function setQuery() {
+    var url = $('#input_box').val();
+    console.log($('#input_box').val())
+    console.log("setQuery: " + url);
+
+    if (validURL(url)) {
+      window.location.href = "site?" + formatUrl(url);
+    } else {
+      console.log("invalid url");
+    }
   }
-  var tmp = document.createElement ('a');
-  tmp.href = url;
-  return tmp.hostname.replace("www.", "");
-}
 
+
+  function validURL(str) {
+    var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    var pattern = new RegExp(expression);
+    if (!pattern.test(str)) {
+      alert("Please enter a valid URL.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function formatUrl(url) {
+    if (url.indexOf("://") == -1) {
+      url = "http://" + url;
+    }
+    var tmp = document.createElement('a');
+    tmp.href = url;
+    return tmp.hostname.replace("www.", "");
+  }
 </script>
