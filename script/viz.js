@@ -200,9 +200,11 @@ function drawBargraph() {
         });
 
         //add the domain data
-        x.domain([0, d3.max(data1, function (d) {
+        /*x.domain([0, d3.max(data1, function (d) {
             return d.traffic;
-        })]);
+        })]);*/
+        x.domain([0, d3.max(data1, function(d) {return +d.traffic;})])
+
         y.domain(data1.map(function (d) {
                 return d.category;
             }))
