@@ -189,7 +189,8 @@ function drawBargraph() {
 	minTraffic = 100000000;
 
 	data1 = $.grep(data1, function (element, index) {
-           return parseInt(element.traffic) > minTraffic; // keep the element in the array
+           
+           return (parseInt(element.traffic) > minTraffic && element.category != "Unknown"); // keep the element in the array
         });
 
 

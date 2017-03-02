@@ -99,8 +99,7 @@ title: Data Transparency Lab
         function getLastUpdate() {
             //console.log("Valid url: " + a);
             return $.getJSON('https://privacymeter-dtl.firebaseio.com/insights/last_update.json', function (data) {
-            $("#last-update").html(data)
-            console.log("ENTRA" + data)    
+            $("#last-update").html(data)    
             });
         }
 
