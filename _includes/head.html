@@ -60,10 +60,12 @@ ul .nav .navbar-nav {
       <!-- <script src="{{ site.baseurl}}/script/components/alerts/alerts.js"></script>
     <script src="{{ site.baseurl}}/script/components/dropdowns/dropdowns.js"></script>
     <script src="{{ site.baseurl}}/script/components/modals/modals.js"></script> -->
+    
   <script type="text/javascript">
     // Nasty hack to ensure the navbar menu is highlighted properly when user
     // goes to a page different to index.html (otherwise, the home option
     // keeps highlighted in the navbar
+    $('#example-one a').removeClass('active');
     $( document ).ready(function() {
       $('a[href="' + document.location.pathname + '"]').parent().parent().parent().addClass('active');
     });

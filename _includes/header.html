@@ -10,13 +10,11 @@
            of smartness to the links to include the naked anchor *only* if the
            page is the index.html and use the full URL otherwise -->
       <a class="navbar-brand" href="{% if page.isIndex%}#{% else %}{{ site.baseurl}}/index.html#{% endif %}">
-        <!-- <img src="{{ site.baseurl}}/images/dtl1-sm.png"> -->
-        <!-- <img src="{{ site.baseurl}}/images/dtl1-sm.png" style="margin-top:-10px;"> -->
       </a>
     </div>
     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
       <form id="searchBar" class="navbar-form navbar-left">
-        <input type="text" class="search-query empty search_input pull-left" id="input_box" placeholder="&#xF002; Search websites">
+        <input type="text" class="search-query empty search_input pull-left" id="input_box" placeholder="  &#xF002; Search websites">
         <button type="button" class="btn btn-default search_button" id="input_button">Search</button>
       </form>
       <ul class="nav navbar-nav">
@@ -28,6 +26,7 @@
           <a href="{{ site.baseurl}}/index.html#about">About</a>
         </li>
         <li>
+          <li class="{% if page.isDownloads %}active{% endif %}">
           <a href="{{ site.baseurl}}/downloads.html">Downloads</a>
         </li>
         <li>

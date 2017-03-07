@@ -1,5 +1,6 @@
 --- 
-layout: default_site 
+layout: default_site
+isSite: true 
 title: Data Transparency Lab 
 ---
 
@@ -99,7 +100,7 @@ title: Data Transparency Lab
         function getLastUpdate() {
             //console.log("Valid url: " + a);
             return $.getJSON('https://privacymeter-dtl.firebaseio.com/insights/last_update.json', function (data) {
-            $("#last-update").html(data)    
+                $("#last-update").html(data)
             });
         }
 
